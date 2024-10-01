@@ -1,0 +1,15 @@
+- name: "Wenxiao Xiong"
+  photo: "photo.jpg"  # 请将此替换为您的实际照片文件名，放置在 images 目录中
+  info: "School of Computer Science and Engineering, Sun Yat-sen University"
+  email: "xiongwx6@mail2.sysu.edu.cn"
+  github: "https://github.com/JOJOX666"
+  instagram: "https://www.instagram.com/sshot666/"
+  wechat: "s-shot"
+  cv: "assets/CV_Wenxiao_Xiong.pdf"  # 如果您有个人简历，请提供其路径
+  education:
+    - "(2021 - Present) B.S. in Information and Computing Science, Sun Yat-sen University"
+    - "GPA: 3.5/4.0"
+    - "Relevant Courses:"
+    - "  - Deep Learning: 92"
+    - "  - Data Structures and Algorithms Laboratory: 94"
+    - "  - Artificial Intelligence Laboratory: 93"

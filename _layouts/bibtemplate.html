@@ -1,0 +1,105 @@
+---
+---
+
+
+<style>
+.btn{
+    margin-bottom:5px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:15px;
+    padding-right:15px;
+    height:20px
+}
+
+pre{
+    white-space: pre-wrap;  
+    white-space: -moz-pre-wrap; 
+    white-space: -pre-wrap; 
+    white-space: -o-pre-wrap; 
+    word-wrap: break-word; 
+    width:100%; overflow-x:auto;
+}
+</style>
+
+
+<div class="text-justify">{{reference}}</div>
+
+<!-- 您可以使用以下代码将您的名字加粗 -->
+<!-- {{reference | replace_first: 'Wenxiao Xiong', '<b>Wenxiao Xiong</b>' }}</div> -->
+
+{% assign bibtest = false %}
+{% if entry.file %}
+{% assign bibfile = "/papers/" | append: entry.file %}
+{% for file in site.static_files %}
+  {% if file.path contains bibfile %}
+   {% assign bibtest = true %}
+  {% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- 显示 PDF 按钮 -->
+{% if bibtest %}
+<a href="{{ site.baseurl }}/papers/{{ entry.file }}" target="_blank"><button class="btn btn-success btm-sm">PDF</button></a>
+{% endif %}
+
+<!-- 显示 Preprint 按钮 -->
+{% if entry.url %}
+<a href="{{ entry.url }}" target="_blank"><button class="btn btn-info btm-sm">Preprint</button></a>
+{% endif %}
+
+<!-- 显示 DOI 或 ArXiv 按钮 -->
+{% if entry.doi %}
+  {% if entry.type == 'unpublished' %}
+    <a href="{{ entry.doi | prepend: 'https://arxiv.org/abs/' }}" target="_blank"><button class="btn btn-primary btm-sm">ArXiv</button></a>
+  {% else %}
+    <a href="{{ entry.doi | prepend: 'http://doi.org/' }}" target="_blank"><button class="btn btn-primary btm-sm">DOI</button></a>
+  {% endif %}
+{% endif %}
+
+<!-- 显示 BibTeX 按钮 -->
+{% if entry.type == 'unpublished' or entry.type == 'article' or  entry.type == 'thesis' or entry.type == 'inproceedings' or entry.type == 'report' %}
+<button class="btn btn-danger btm-sm"  onclick="toggleBibtex{{entry.key}}()">BIB</button>
+{% endif %}
+
+<!-- 显示摘要按钮 -->
+{% if entry.abstract %}
+<button class="btn btn-warning btm-sm"  onclick="toggleAbstract{{entry.key}}()">ABSTRACT</button>
+{% endif %}
+
+<!-- BibTeX 内容 -->
+{% if entry.abstract %}
+<div id="a{{entry.key}}" style="display: none; background-color:black; border-radius:5px; padding:10px; margin-bottom:20px;">
+<pre>{{ entry.bibtex | remove: "entry.abstract" }}</pre>
+</div>
+{% else %}
+<div id="a{{entry.key}}" style="display: none; background-color:black; border-radius:5px; padding:10px; margin-bottom:20px;">
+<pre>{{ entry.bibtex }}</pre>
+</div>
+{% endif %}
+
+<!-- 摘要内容 -->
+{% if entry.abstract %}
+<div id="b{{entry.key}}" style="display: none; background-color:black; border-radius:5px; padding:10px; margin-bottom:20px;">
+<pre>{{entry.abstract}}</pre>
+</div>
+{% endif %}
+
+<script>
+function toggleBibtex{{entry.key}}(parameter) {
+    var x= document.getElementById('a{{entry.key}}');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+function toggleAbstract{{entry.key}}(parameter) {
+    var x= document.getElementById('b{{entry.key}}');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+</script>
