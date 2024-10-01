@@ -6,23 +6,23 @@ permalink: /research/
 ---
 
 <style>
-img{
+img:not(.favicon) {
   border-radius: 10px;
   max-width: 100%;
   height: auto;
-  margin-top: 10px; /* 在图片顶部添加间距 */
 }
 .project {
-  margin-top:20px;
-  margin-bottom:20px;
-  padding:20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
   background: gray;
   border-radius: 10px;
 }
 .project h4 {
-  margin-top:0;
+  margin-top: 0;
 }
 </style>
+
 
 ## Research Projects
 
